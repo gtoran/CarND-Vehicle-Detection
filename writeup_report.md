@@ -50,11 +50,13 @@ I trained a linear SVM using the `sklearn` library in the third block of code of
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-I implemented the sliding window search in the eight block of code, which I reused from Udacity's lesson example with some minor tweaks. Mainly, I set default values for most arguments and simplified areas of code which I deemed unnecesary for this project. I also modified the function return so it outputs the rediction results to a list.
+I implemented the sliding window search in the eight block of code, which I reused from Udacity's lesson example with some minor tweaks. Mainly, I set default values for most arguments and simplified areas of code which I deemed unnecesary for this project. I also modified the function return so it outputs the prediction results to a list.
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images of the first stage, when the pipeline has only identified positive matches without discarding false positives, overlaying results, etc.
+To optimize the classifier, I started off with the example parameters provided in the lesson material. After trial and error, it turns out that these parameters were the most suited for my simulation (I achieved the highest train and test accuracies). For example, a value of 10 for `pix_per_cell` and 4 for `cell_per_block` return a 99% train accuracy instead of the optimal 100%.
+
+Here are some example images of the first stage, when the pipeline has only identified positive matches without discarding false positives, overlaying results, etc.
 
 ![Pipeline - Positive Detection](https://gtoran.github.io/repository-assets/CarND-Vehicle-Detection-P5/positive-detection.png)
 ---
