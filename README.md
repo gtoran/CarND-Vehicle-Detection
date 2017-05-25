@@ -19,4 +19,4 @@ Here are links to the labeled data for [vehicle](https://s3.amazonaws.com/udacit
 
 Resolution
 ---
-Please review [my writeup](https://github.com/gtoran/CarND-Vehicle-Detection-P5/blob/master/writeup_report.md) for resolution details and further information.
+Please review [my writeup](https://github.com/gtoran/CarND-Vehicle-Detection/blob/master/writeup_report.md) for resolution details and further information.
