@@ -44,7 +44,7 @@ I tried various combinations of parameters and found these to be the most respon
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using the `sklearn` library in the third block of code of the notebook. After extracting features from all images, I ran the training and testing dataset through the `fit()` method to train the classifier. I was able to score a test accuracy of 0.9825.
+I trained a linear SVM using the `sklearn` library in the third block of code of the notebook. After extracting features from all images, I ran the training and testing dataset through the `fit()` method to train the classifier. I was able to score a max test accuracy of 0.9825 over all my training runs.
 
 ### Sliding Window Search
 
@@ -65,13 +65,13 @@ Here are some example images of the first stage, when the pipeline has only iden
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 
-Here's a [link to my video result](./output_images/project_video.mp4). The end result is very promising!
+Here's a [link to my video result](./output_images/project_video.mp4). The end result is very promising, although I get a stray of false positives during the first frames.
 
 For reference, here's a [link to my video test](./output_images/test_video.mp4). I've also included a custom short clip which unfortunately didn't identify any vehicles at all. My initial thoughts were that the training dataset is based on US cars only and, although they are very similar, the difference must be just enough to throw off the classifier.
 
 ####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
-I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions. I then used the `draw_labeled_bboxes` method which iterates over all detected cars, references them to their label and overlays a box on the final image.
+I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions. I then used the `draw_labeled_bboxes` method which iterates over all detected cars, references them to their label and overlays a box on the final image. I append heatmaps to a collection as part of a multi-frame averaging technique thanks to the `deque` method over a `maxlen` of 8 (note: I conditionally trigger this so I can analyze individual frames without averaging heatmaps - this causes unreliable images).
 
 ### Here are six frames with their boxes and their corresponding heatmaps:
 
